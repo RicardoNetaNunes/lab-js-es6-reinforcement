@@ -1,15 +1,20 @@
 // ***************************************************************************
 // Iteration 1 - `for...of` loop
 // ***************************************************************************
+let usersArray = require(`./data`)
+//console.log(usersArray)
 
 const getFirstNames = arr => {
-  const userFirstNames = [];
+  const firstNames = [];
   for (let user of arr) {
-    // Your code goes here ...
+    firstNames.push(user.firstName)
   }
+  return firstNames;
 };
 
-getFirstNames(usersArray);
+//
+  //console.log(getFirstNames(usersArray));
+
 // expected output:
 // [ 'Kirby', 'Tracie', 'Kendra', 'Kinney', 'Howard', 'Rachelle', 'Lizzie' ]
 
@@ -19,9 +24,17 @@ getFirstNames(usersArray);
 
 const getFullNames = arr => {
   // Your code goes here ...
+  
+  const  fullNames = [];
+  for (let user of arr) {
+    fullNames.push(`${user.firstName} ${user.lastName}`)
+  }
+
+  return fullNames
+  
 };
 
-getFullNames(usersArray);
+//console.log(getFullNames(usersArray));
 // expected output:
 // [ 'Kirby Doyle', 'Tracie May', 'Kendra Hines', 'Kinney Howard',
 //   'Howard Gilmore', 'Rachelle Schneider', 'Lizzie Alford' ]
@@ -31,10 +44,24 @@ getFullNames(usersArray);
 // ***************************************************************************
 
 const getUsersCreditDetails = arr => {
-  // Your code goes here ...
+  const usersCreditDetails = [];
+
+  for (let user of arr) {
+    let {firstName, lastName, balance } = user;
+
+    const newObj = {
+      firstName,
+      lastName,
+      balance
+    }
+
+    usersCreditDetails.push(newObj);
+    
+  }
+  return usersCreditDetails
 };
 
-getUsersCreditDetails(usersArray);
+//console.log(getUsersCreditDetails(usersArray));
 // expected output:
 // [ { firstName: 'Kirby', lastName: 'Doyle', balance: '$3,570.06' },
 // { firstName: 'Tracie', lastName: 'May', balance: '$1,547.73' },
@@ -50,9 +77,25 @@ getUsersCreditDetails(usersArray);
 
 const genderView = users => {
   // Your code goes here ...
+
+  let femaleUsers = usersArray.filter( (elem) => {
+      return elem.gender =='female'    
+  })
+  
+  let maleUsers = usersArray.filter((elem) => {
+    return elem.gender == 'male'
+  })
+ 
+
+
+return [getFullNames(femaleUsers),getFullNames(maleUsers)];
+ 
+  
+
+// return [getFirstValue(), getSecondValue()]
 };
 
-genderView(usersArray);
+console.log(genderView(usersArray));
 // expected output:
 // {
 //    femaleUsers: [ 'Tracie May', 'Kendra Hines', 'Rachelle Schneider', 'Lizzie Alford' ],
